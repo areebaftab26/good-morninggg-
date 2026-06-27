@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope you smile after seeing this❤️</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #ffe6e6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 { color: #ff4d4d; margin-bottom: 20px; text-transform: capitalize; }
+        #message {
+            font-size: 18px;
+            line-height: 1.6;
+            min-height: 100px;
+            white-space: pre-line;
+            margin-bottom: 30px;
+        }
+        .meter-container {
+            margin-top: 20px;
+            display: none;
+        }
+        input[type="range"] {
+            width: 80%;
+            accent-color: #ff4d4d;
+        }
+        #status {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="headline">Good Morning... ☀️</h1>
+    <div id="message"></div>
+
+    <div class="meter-container" id="meterSection">
+        <p><strong>Your current mood:</strong></p>
+        <input type="range" id="moodSlider" min="0" max="100" value="0" oninput="updateMeter(this.value)">
+        <div id="status">Still in a bad mood 😡 (0%)</div>
+    </div>
+</div>
+
+<script>
+    // Customize your typing message below. Use \n for a new line
+    const text = "I know you're not in a good mood today and you didn't say good morning as well. Pehli baar aisa hua hai ki 2 dino se Sameera good morning ka reply bhi nhi de rhi, but it is fine, I understand you're not in your best state right now...\n\nSo I am trying my best to bring a little smile to your face cause it hurts when I see you sad like this.\nYour happiness is very precious to me, and I will always make sure to keep you smiling and happy.\n\nCan you please smile a little for me? Check the meter below... 👇";
+    let index = 0;
+    const messageEl = document.getElementById('message');
+    const meterSection = document.getElementById('meterSection');
+
+    function typeEffect() {
+        if (index < text.length) {
+            messageEl.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeEffect, 40); // Slightly speeded up to 40ms for a better reading experience
+        } else {
+            meterSection.style.display = 'block';
+        }
+    }
+
+    function updateMeter(val) {
+        const statusEl = document.getElementById('status');
+        const headlineEl = document.getElementById('headline');
+        
+        if (val < 30) {
+            statusEl.innerHTML = `Still in a bad mood 😡 (${val}%)`;
+        } else if (val >= 30 && val < 70) {
+            statusEl.innerHTML = `Theek thaak thoda 🤨 (${val}%)`;
+        } else if (val >= 70 && val < 100) {
+            statusEl.innerHTML = `Almost Smiled 🫣 (${val}%)`;
+        } else if (val == 100) {
+            statusEl.innerHTML = `Yay! Fully Happy! ❤️ (100%)`;
+            headlineEl.innerHTML = "Thank You Sameera! 🥰";
+        }
+    }
+
+    // Start typing effect on load
+    window.onload = typeEffect;
+</script>
+
+</body>
+</html>
