@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please Forgive Me? 🥺</title>
+    <style>
+        /* 🌈 Animated Gradient Background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ff758c, #ff7eb3, #e75480, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 📦 Main Card */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            max-width: 500px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            position: relative;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        /* 🎭 Shake Animation on Heading */
+        h1 {
+            color: #d63384;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        /* 🔄 Cycling Desperate Messages */
+        #messageBox {
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            min-height: 60px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        #attemptCounter {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: -15px;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* 🎮 Button Layout Container */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 100px;
+            position: relative;
+        }
+
+        /* 🎯 Buttons Styling */
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease, font-size 0.2s ease, background-color 0.3s;
+            outline: none;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 📈 Expanding Yes Button */
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            z-index: 11;
+        }
+        #yesBtn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        /* 🏃‍♂️ Shrinking/Dodging No Button */
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 12;
+        }
+
+        /* 💖 Floating Hearts Setup */
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+            bottom: -50px;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ✨ Sparkle Effects */
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #ff007f;
+            animation: poof 0.4s ease-out forwards;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        @keyframes poof {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3) translate(var(--x), var(--y)); opacity: 0; }
+        }
+
+        /* 🎊 Victory Screen (hidden initially) */
+        #victoryScreen {
+            display: none;
+        }
+        .victory-emoji {
+            font-size: 5rem;
+            animation: dance 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes dance {
+            0% { transform: scale(1) rotate(-10deg); }
+            100% { transform: scale(1.2) rotate(10deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Game UI -->
+    <div class="card" id="mainCard">
+        <h1 id="heading">I'm So Sorry! 🥺</h1>
+        <div id="messageBox">I messed up... Can you please forgive me? Check out the options below! 👇</div>
+        <div id="attemptCounter">Attempts to say No: 0</div>
+        
+        <div class="btn-container" id="btnContainer">
+            <button class="btn" id="yesBtn" onclick="celebrate()">Yes! ❤️</button>
+            <button class="btn" id="noBtn">No 😡</button>
+        </div>
+    </div>
+
+    <!-- 🎊 Victory Screen Container -->
+    <div class="card" id="victoryScreen">
+        <div class="victory-emoji">💃🎉🥰</div>
+        <h1 style="color: #28a745; margin-top: 20px;">Yay! Fully Forgiven!</h1>
+        <p style="font-size: 1.2rem; color: #4a4a4a;">You are the absolute best! I promise to make it up to you every single day! ❤️✨</p>
+    </div>
+
+<script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const msgBox = document.getElementById('messageBox');
+    const counterBox = document.getElementById('attemptCounter');
+    const container = document.getElementById('btnContainer');
+
+    let attempts = 0;
+    let noScale = 1.0;
+    let yesScale = 1.0;
+
+    // 💪 15+ Unique Apology Messages Cycling
+    const messages = [
+        "Please? Just click the green button! 🥺",
+        "Wait, why are you trying to click No? 👀",
+        "Error 404: 'No' option not found in my heart! ❌",
+        "Come on, give a guy a break! 😭",
+        "I'll buy you your favorite food/ice cream! 🍦🍟",
+        "Look how tiny the 'No' button is getting... Just give up! 😂",
+        "My heart hurts every time you try to click that!💔",
+        "Pretty please with a cherry on top? 🍒",
+        "I promise to be 1000% better next time! 🌟",
+        "You're too cute to stay mad at me! 🫠",
+        "The universe says you should click YES! ✨",
+        "Still trying? Damn, you have great reflexes! 🏃‍♂️💨",
+        "Okay, now you're just turning this into a mini-game! 🎮",
+        "I'm typing this on my knees practically! 🙏",
+        "Resistance is futile! Choose love! 🥰",
+        "Fine, keep chasing it, but 'Yes' is right there! 👉💚"
+    ];
+
+    // 🏃‍♂️ Dodge logic for Desktop (Hover) & Mobile (Touch)
+    function escape() {
+        attempts++;
+        counterBox.innerText = `Attempts to say No: ${attempts}`;
+
+        // 🧠 Dynamically cycle messages
+        msgBox.innerText = messages[Math.min(attempts - 1, messages.length - 1)];
+
+        // 📉 Shrink No Button (Down to 30% max)
+        if (noScale > 0.3) {
+            noScale -= 0.05;
+            noBtn.style.transform = `scale(${noScale})`;
+        }
+
+        // 📈 Grow Yes Button
+        yesScale += 0.15;
+        yesBtn.style.transform = `scale(${yesScale})`;
+
+        // ✨ Generate Sparkles at the escape point
+        createSparkles(noBtn.offsetLeft + noBtn.offsetWidth/2, noBtn.offsetTop + noBtn.offsetHeight/2);
+
+        // 🎯 Anti-overlap algorithm / Teleportation bounds
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        
+        // Boundaries spanning beyond container to allow moving over the card real-estate safely
+        const maxX = 180; 
+        const minX = -180;
+        const maxY = 120;
+        const minY = -120;
+
+        let randomX, randomY;
+        let overlaps = true;
+
+        // Smart collision detection loop so it never stacks right under the 'Yes' button
+        while(overlaps) {
+            randomX = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
+            randomY = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+
+            // Simple distance threshold check from center (where Yes sits)
+            if (Math.abs(randomX) > 80 || Math.abs(randomY) > 40) {
+                overlaps = false;
+            }
+        }
+
+        noBtn.style.left = randomX + 'px';
+        noBtn.style.top = randomY + 'px';
+    }
+
+    // Attach listeners for ultra-responsiveness
+    noBtn.addEventListener('mouseenter', escape);
+    noBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Stops accidental zoom/double click on mobile
+        escape();
+    });
+
+    // ✨ Sparkle generator function
+    function createSparkles(x, y) {
+        for(let i=0; i<8; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = (x + container.offsetLeft) + 'px';
+            sparkle.style.top = (y + container.offsetTop) + 'px';
+            
+            // Random direction variables for CSS animation
+            sparkle.style.setProperty('--x', (Math.random() * 60 - 30) + 'px');
+            sparkle.style.setProperty('--y', (Math.random() * 60 - 30) + 'px');
+            
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 400);
+        }
+    }
+
+    // 💖 Constant Background Hearts Generator
+    function createHearts() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
