@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope you smile after seeing this❤️</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            /* 🌹 Fixed: Beautiful High-Quality Red Roses & Tulips Background Image */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                              url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #4a2c11; /* Coffee brown text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+            overflow-y: auto; /* 📜 Always allow free scrolling */
+        }
+        
+        /* 📜 Coffee Brown Burnt Paper Aesthetic Card */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #f4ecd8; /* Vintage parchment paper color */
+            padding: 40px 35px;
+            border-radius: 4px; /* Slightly sharp corners like paper */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            position: relative;
+            border: 2px solid #6b4423;
+            /* 🔥 Burnt paper edges look via multi-layered box-shadow & border styles */
+            box-shadow: 
+                0 0 0 4px #f4ecd8,
+                0 0 20px rgba(91, 53, 24, 0.4) inset,
+                0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        h1 { 
+            color: #5c3a21; /* Deep coffee brown */
+            margin-bottom: 25px; 
+            text-transform: capitalize;
+            font-weight: bold;
+            border-bottom: 1px dashed #8b5a2b;
+            padding-bottom: 10px;
+        }
+        
+        #message {
+            font-size: 18px;
+            line-height: 1.8;
+            min-height: 100px;
+            white-space: pre-line;
+            margin-bottom: 30px;
+            text-align: left;
+            color: #4a2c11; /* Warm coffee brown text */
+        }
+        
+        .meter-container {
+            margin-top: 25px;
+            border-top: 1px dashed #8b5a2b;
+            padding-top: 20px;
+            display: none;
+        }
+        
+        input[type="range"] {
+            width: 85%;
+            accent-color: #704214; /* Sepia/Brown slider track */
+        }
+        
+        #status {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #5c3a21;
+        }
+        
+        /* 🎯 Custom Messages Text Block */
+        #extraInstruction {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 18px;
+            color: #8b4513; /* Saddle Brown accent text */
+            line-height: 1.6;
+            font-style: italic;
+            min-height: 45px;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="headline">hii prettiest sameera💗</h1>
+    <div id="message"></div>
+
+    <div class="meter-container" id="meterSection">
+        <p><strong>Your current mood:</strong></p>
+        <input type="range" id="moodSlider" min="0" max="100" value="0" oninput="updateMeter(this.value)">
+        <div id="status">Still in a bad mood 😡 (0%)</div>
+        <!-- 🎯 Dynamic Extra Instruction Text Box -->
+        <div id="extraInstruction"></div>
+    </div>
+</div>
+
+<script>
+const text = "I know you're not in a good mood today bhot down hai energy tumhari kuch dino se I know well aur pehli baar aisa hua hai ki 2 dino se sameera good morning ka reply bhi nhi de rhi, but fine it is, I'm always here for you in every situation mai ne pehle b kayi baar kaha hai aur hamesha hi kahunga, i know abhi bhi tumhara mood ikdm acha nhi hoga...\n\nisiliye i'm trying my best to bring a little smile to your face cause it really hurts when i see you sad like this.\ntumhari khushi, tumhara hasna, tumhara muskurana and most important tumhara hona all are very important and precious to me, and i will always make sure to keep you smiling and happy and i don't care whatever it takes! for you I'll always be like Chalo Dur Kahin Song so haazir hu mai, tumhara hi hu mai\n\nnow can you please smile a little for me? (please mana mat krna dil tut jaayega mera heh ab has b do na bhot pyaari lgti ho haste huye) chlo now.....check the meter below... 👇";    
+let index = 0;
+    const messageEl = document.getElementById('message');
+    const meterSection = document.getElementById('meterSection');
+    const extraInstructionEl = document.getElementById('extraInstruction');
+
+    function typeEffect() {
+        if (index < text.length) {
+            messageEl.innerHTML += text.charAt(index);
+            index++;
+            
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+            
+            // 🏎️ Fixed Speed: Changed from 80 to 25. Text will now generate at a swift, engaging pace!
+            setTimeout(typeEffect, 25); 
+        } else {
+            meterSection.style.display = 'block';
+            setTimeout(() => {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }, 200);
+        }
+    }
+
+    function updateMeter(val) {
+        const statusEl = document.getElementById('status');
+        const headlineEl = document.getElementById('headline');
+        
+        // 📊 Standard Progress Display Logic
+        if (val < 30) {
+            statusEl.innerHTML = `Still in a bad mood 😡 (${val}%)`;
+        } else if (val >= 30 && val < 70) {
+            statusEl.innerHTML = `Theek thaak thoda 🤨 (${val}%)`;
+        } else if (val >= 70 && val < 100) {
+            statusEl.innerHTML = `Almost Smiled 🫣 (${val}%)`;
+        } else if (val == 100) {
+            statusEl.innerHTML = `Yay! Fully Happy! ❤️ (100%)`;
+            headlineEl.innerHTML = "Thank You Sameera! 🥰";
+        }
+
+        // 🎯 Exact Custom Message Ranges under Slider Box
+        if (val == 0) {
+            extraInstructionEl.innerHTML = "";
+        } else if (val > 0 && val < 30) {
+            extraInstructionEl.innerHTML = "itni kanjoosi nhi kro na sameera chlo thoda aur slide kro🙂‍↔️";
+        } else if (val >= 30 && val < 40) {
+            extraInstructionEl.innerHTML = "very good keep going, good girl🤌🏻";
+        } else if (val >= 40 && val < 60) {
+            extraInstructionEl.innerHTML = "areee vaah so proud of you chlo thoda aur slide kro you can do it yes🫶🏻";
+        } else if (val >= 60 && val < 80) {
+            extraInstructionEl.innerHTML = "no cheating sameera mai dkh rha hu tumhe🤨 chlo jaldi se aage slide kro aur happy hona hoga tumhe😌";
+        } else if (val >= 80 && val < 100) {
+            extraInstructionEl.innerHTML = "dkha i told you na you can do it chlo ab itna aa hi gyi ho to pura slide krdo ab heh🤭";
+        } else if (val == 100) {
+            extraInstructionEl.innerHTML = "yay now ab 100% happy ho gyi ho to ek baar upar scroll krke heading pdh lo🫠";
+        }
+    }
+
+    window.onload = typeEffect;
+</script>
+
+</body>
+</html>
+  
